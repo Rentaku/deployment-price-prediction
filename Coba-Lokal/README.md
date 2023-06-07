@@ -32,11 +32,11 @@ Setelah lingkungan virtual aktif, letakkan file **main.py**, **best_model.h5**, 
 
 <center>Tampilan hasil dir Model Mobil</center>
 
-![Gambar Dir](assets\dir-mobil.jpg)
+![Gambar Dir](assets/dir-mobil.jpg)
 
 <center>Tampilan hasil dir Model Motor</center>
 
-![Gambar Dir](assets\dir-motor.jpg)
+![Gambar Dir](assets/dir-motor.jpg)
 
 ## 6. Instalasi dependensi
 
