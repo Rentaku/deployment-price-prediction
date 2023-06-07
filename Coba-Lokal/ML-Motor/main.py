@@ -73,7 +73,6 @@ def index():
             feature3 = input_data.get('feature3')
             feature4 = input_data.get('feature4')
             feature5 = input_data.get('feature5')
-            feature5 = input_data.get('feature5')
             features = prepare_data(feature1, feature2, feature3, feature4, feature5)
             print(len(features))
             prediction = predict(features)

@@ -27,7 +27,7 @@ class RSquared(tf.keras.metrics.Metric):
     def reset_states(self):
         self.total_residual.assign(0.0)
         self.total_total.assign(0.0)
-        
+
 normalized_df = pandas.read_csv('data_mobil.csv')
 
 def prepare_data(mileage, manufacture, model, category, year, gear_box_type):
