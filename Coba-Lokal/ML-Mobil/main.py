@@ -6,6 +6,7 @@ from tensorflow import keras
 import pandas
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 from flask import Flask, request, jsonify
 
 class RSquared(tf.keras.metrics.Metric):
@@ -32,7 +33,7 @@ normalized_df = pandas.read_csv('data_mobil.csv')
 
 def prepare_data(mileage, manufacture, model, category, year, gear_box_type):
     # Input nilai untuk setiap fitur
-    input_value0 = str(mileage)
+    input_value0 = mileage
     input_value1 = str(manufacture)
     input_value2 = str(model)
     input_value3 = str(category)
