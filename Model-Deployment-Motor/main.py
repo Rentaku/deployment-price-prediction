@@ -54,7 +54,8 @@ def prepare_data(mileage, brand, model, tahun, cc):
 
 def predict(x):
     scaler = MinMaxScaler()
-    data_predict = scaler.fit_transform([x])
+    scaler.fit(normalized_df.iloc[:,1:])
+    data_predict = scaler.transform([x])
     predictions = model.predict(data_predict)
     return predictions.tolist()
 
