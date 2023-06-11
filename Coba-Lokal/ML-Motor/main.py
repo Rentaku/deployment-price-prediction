@@ -61,7 +61,7 @@ def predict(x):
     scaler.fit(normalized_df.iloc[:,1:])
     data_predict = scaler.transform([x])
     predictions = model.predict(data_predict)
-    return predictions
+    return predictions.to_list()
 
 app = Flask(__name__)
 
