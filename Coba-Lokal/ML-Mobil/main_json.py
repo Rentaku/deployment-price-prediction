@@ -88,5 +88,13 @@ def index():
 
 if __name__ == "__main__":
     keras.utils.get_custom_objects().update({'RSquared': RSquared})
-    model = keras.models.load_model("model-mobil.h5")  # Load the model inside the custom object scope
+
+    with open('model.json','r') as f:
+        model_json = f.read()
+
+    model = keras.models.load_model(model_json)  # Load the model inside the custom object scope
+    model.load_weights('group1-shard1of3.bin')
+    model.load_weights('group1-shard2of3.bin')
+    model.load_weights('group1-shard3of3.bin')
+
     app.run(debug=True)
