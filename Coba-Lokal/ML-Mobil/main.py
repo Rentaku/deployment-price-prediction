@@ -37,11 +37,11 @@ normalized_df = pandas.read_csv('data_mobil.csv')
 def prepare_data(mileage, manufacture, model, category, year, gear_box_type):
     # Input nilai untuk setiap fitur
     input_value0 = mileage
-    input_value1 = str(manufacture)
-    input_value2 = str(model)
-    input_value3 = str(category)
-    input_value4 = str(year)
-    input_value5 = str(gear_box_type)
+    input_value1 = manufacture
+    input_value2 = model
+    input_value3 = category
+    input_value4 = year
+    input_value5 = gear_box_type
 
     column_names1 = normalized_df.columns[1:31]  # Nama-nama kolom
     column_names2 = normalized_df.columns[31:1597]
