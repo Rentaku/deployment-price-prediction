@@ -29,10 +29,10 @@ class RSquared(tf.keras.metrics.Metric):
         self.total_residual.assign(0.0)
         self.total_total.assign(0.0)
 
-list_fitur = ['mileage', 'aprilia', 'demak', 'ducati', 'hero', 'honda', 'ktm', 'kawasaki', 'kinetic', 'loncin', 'mahindra', 'suzuki', 'tvs', 'yamaha', '250', '90', 'ax1', 'achiever', 'apache', 'balius', 'bandit', 'benly', 'blaze', 'boxer', 'cb 125', 'cb hornet', 'cb shine', 'cb trigger', 'cb unicorn', 'cb4', 'cbr', 'cbz', 'cd', 'cd 110', 'cd 125', 'cd 70', 'cd 90', 'cd down', 'cm custom', 'centra', 'centuro', 'civic', 'd tracker', 'd7', 'dr', 'dt', 'dtm', 'dzm', 'dzr', 'dash', 'dawn', 'djebel', 'dream', 'duke', 'duke 200', 'estrella', 'ftr', 'fz', 'fz s', 'fz25', 'fazer', 'flame', 'gn 125', 'gn 250', 'gs 125', 'gixxer', 'gladiator', 'glamour', 'grass tracker', 'gusto', 'hf dawn', 'hf deluxe', 'hornet', 'hunk', 'ignitor', 'intruder', 'jade', 'karizma', 'ld', 'lx', 'libero', 'little cub', 'md', 'mt 15', 'magna', 'mate', 'metro', 'monster', 'nv400', 'navi', 'ninja', 'ntorq', 'pcx', 'passion', 'passion plus', 'passion pro', 'r15', 'rc', 'rebel', 'rio', 'sx', 'sz-rr', 'safari', 'saluto', 'savage supra', 'scooty zest', 'sky born', 'skyline', 'splender', 'splender plus', 'splender i smart', 'star city plus', 'star sport', 'streak', 'stryker', 'stunner', 'super club', 'super splender', 'ttr', 'tw', 'tzr', 'tropica', 'tuono', 'twister', 'uzo 125', 'vtr', 'victor', 'virago', 'warrior', 'wego', 'x-blade', 'xl 100', 'xl super', 'xlr', 'xr', 'xtream', 'zoomer', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '1,500 cc', '100 cc', '110 cc', '111 cc', '113 cc', '115 cc', '120 cc', '125 cc', '140 cc', '149 cc', '150 cc', '152 cc', '153 cc', '154 cc', '155 cc', '156 cc', '157 cc', '160 cc', '177 cc', '180 cc', '197 cc', '2,010 cc', '2,017 cc', '200 cc', '223 cc', '225 cc', '228 cc', '230 cc', '249 cc', '250 cc', '366 cc', '400 cc', '48 cc', '49 cc', '50 cc', '555 cc', '60 cc', '650 cc', '696 cc', '70 cc', '75 cc', '8,000 cc', '80 cc', '85 cc', '89 cc', '90 cc', '99 cc', 'price']
+#list_fitur = ['mileage', 'aprilia', 'demak', 'ducati', 'hero', 'honda', 'ktm', 'kawasaki', 'kinetic', 'loncin', 'mahindra', 'suzuki', 'tvs', 'yamaha', '250', '90', 'ax1', 'achiever', 'apache', 'balius', 'bandit', 'benly', 'blaze', 'boxer', 'cb 125', 'cb hornet', 'cb shine', 'cb trigger', 'cb unicorn', 'cb4', 'cbr', 'cbz', 'cd', 'cd 110', 'cd 125', 'cd 70', 'cd 90', 'cd down', 'cm custom', 'centra', 'centuro', 'civic', 'd tracker', 'd7', 'dr', 'dt', 'dtm', 'dzm', 'dzr', 'dash', 'dawn', 'djebel', 'dream', 'duke', 'duke 200', 'estrella', 'ftr', 'fz', 'fz s', 'fz25', 'fazer', 'flame', 'gn 125', 'gn 250', 'gs 125', 'gixxer', 'gladiator', 'glamour', 'grass tracker', 'gusto', 'hf dawn', 'hf deluxe', 'hornet', 'hunk', 'ignitor', 'intruder', 'jade', 'karizma', 'ld', 'lx', 'libero', 'little cub', 'md', 'mt 15', 'magna', 'mate', 'metro', 'monster', 'nv400', 'navi', 'ninja', 'ntorq', 'pcx', 'passion', 'passion plus', 'passion pro', 'r15', 'rc', 'rebel', 'rio', 'sx', 'sz-rr', 'safari', 'saluto', 'savage supra', 'scooty zest', 'sky born', 'skyline', 'splender', 'splender plus', 'splender i smart', 'star city plus', 'star sport', 'streak', 'stryker', 'stunner', 'super club', 'super splender', 'ttr', 'tw', 'tzr', 'tropica', 'tuono', 'twister', 'uzo 125', 'vtr', 'victor', 'virago', 'warrior', 'wego', 'x-blade', 'xl 100', 'xl super', 'xlr', 'xr', 'xtream', 'zoomer', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '1,500 cc', '100 cc', '110 cc', '111 cc', '113 cc', '115 cc', '120 cc', '125 cc', '140 cc', '149 cc', '150 cc', '152 cc', '153 cc', '154 cc', '155 cc', '156 cc', '157 cc', '160 cc', '177 cc', '180 cc', '197 cc', '2,010 cc', '2,017 cc', '200 cc', '223 cc', '225 cc', '228 cc', '230 cc', '249 cc', '250 cc', '366 cc', '400 cc', '48 cc', '49 cc', '50 cc', '555 cc', '60 cc', '650 cc', '696 cc', '70 cc', '75 cc', '8,000 cc', '80 cc', '85 cc', '89 cc', '90 cc', '99 cc', 'price']
 
-normalized_df = pandas.DataFrame(columns=list_fitur)
-#normalized_df = pandas.read_csv('data_motor.csv')
+#normalized_df = pandas.DataFrame(columns=list_fitur)
+normalized_df = pandas.read_csv('data_motor.csv')
 
 def prepare_data(mileage, brand, model, tahun, cc):
     # Input nilai untuk setiap fitur
@@ -58,9 +58,10 @@ def prepare_data(mileage, brand, model, tahun, cc):
 
 def predict(x):
     scaler = MinMaxScaler()
-    data_predict = scaler.fit_transform([x])
+    scaler.fit(normalized_df.iloc[:,1:])
+    data_predict = scaler.transform([x])
     predictions = model.predict(data_predict)
-    return predictions.tolist()
+    return predictions
 
 app = Flask(__name__)
 
