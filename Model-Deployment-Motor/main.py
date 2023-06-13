@@ -6,7 +6,11 @@ from tensorflow import keras
 import pandas
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 class RSquared(tf.keras.metrics.Metric):
     def __init__(self, name='r_squared', **kwargs):
@@ -28,15 +32,18 @@ class RSquared(tf.keras.metrics.Metric):
         self.total_residual.assign(0.0)
         self.total_total.assign(0.0)
 
+# Register custom metric as a custom object
+keras.utils.get_custom_objects().update({'RSquared': RSquared})
+
 normalized_df = pandas.read_csv('data_motor.csv')
 
 def prepare_data(mileage, brand, model, tahun, cc):
     # Input nilai untuk setiap fitur
-    input_value1 = (mileage)
-    input_value2 = (brand)
-    input_value3 = (model)
-    input_value4 = (tahun)
-    input_value5 = (cc)
+    input_value1 = mileage
+    input_value2 = brand
+    input_value3 = model
+    input_value4 = tahun
+    input_value5 = cc
 
     # Nama-nama kolom
     column_names2 = normalized_df.columns[1:14]
@@ -52,14 +59,15 @@ def prepare_data(mileage, brand, model, tahun, cc):
 
     return features
 
+# Load the model
+modelh5 = keras.models.load_model("model_motor.h5")
+
 def predict(x):
     scaler = MinMaxScaler()
     scaler.fit(normalized_df.iloc[:,1:])
     data_predict = scaler.transform([x])
-    predictions = model.predict(data_predict)
+    predictions = modelh5.predict(data_predict)
     return predictions.tolist()
-
-app = Flask(__name__)
 
 @app.route("/", methods=["POST"])
 def index():
@@ -75,7 +83,6 @@ def index():
             feature4 = input_data.get('feature4')
             feature5 = input_data.get('feature5')
             features = prepare_data(feature1, feature2, feature3, feature4, feature5)
-            print(len(features))
             prediction = predict(features)
 
             data = {"prediction": prediction}
@@ -85,10 +92,4 @@ def index():
     return "OK"
 
 if __name__ == "__main__":
-    # Register custom metric as a custom object
-    keras.utils.get_custom_objects().update({'RSquared': RSquared})
-
-    # Load the model
-    model = keras.models.load_model("model-motor.h5")
-
     app.run(debug=True)

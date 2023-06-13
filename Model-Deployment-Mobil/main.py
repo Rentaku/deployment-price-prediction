@@ -8,6 +8,9 @@ import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 from flask import Flask, request, jsonify
 
+app = Flask(__name__)
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+
 class RSquared(tf.keras.metrics.Metric):
     def __init__(self, name='r_squared', **kwargs):
         super(RSquared, self).__init__(name=name, **kwargs)
@@ -28,6 +31,8 @@ class RSquared(tf.keras.metrics.Metric):
         self.total_residual.assign(0.0)
         self.total_total.assign(0.0)
         
+keras.utils.get_custom_objects().update({'RSquared': RSquared})
+
 normalized_df = pandas.read_csv('data_mobil.csv')
 
 def prepare_data(mileage, manufacture, model, category, year, gear_box_type):
@@ -54,14 +59,14 @@ def prepare_data(mileage, manufacture, model, category, year, gear_box_type):
 
     return features
 
+model = keras.models.load_model("model-mobil.h5")
+
 def predict(x):
     scaler = MinMaxScaler()
     scaler.fit(normalized_df.iloc[:,1:])
     data_predict = scaler.transform([x])
     predictions = model.predict(data_predict)
     return predictions.tolist()
-
-app = Flask(__name__)
 
 @app.route("/", methods=["POST"])
 def index():
@@ -87,6 +92,4 @@ def index():
     return "OK"
 
 if __name__ == "__main__":
-    keras.utils.get_custom_objects().update({'RSquared': RSquared})
-    model = keras.models.load_model("model-mobil.h5")  # Load the model inside the custom object scope
     app.run(debug=True)
